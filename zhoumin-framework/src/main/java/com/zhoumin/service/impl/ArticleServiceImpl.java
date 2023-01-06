@@ -5,11 +5,17 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhoumin.domain.ResponseResult;
 import com.zhoumin.domain.entity.Article;
+import com.zhoumin.domain.vo.HotArticleVo;
 import com.zhoumin.mapper.ArticleMapper;
 import com.zhoumin.service.ArticleService;
+import com.zhoumin.utils.BeanCopyUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.zhoumin.constants.SystemConstants.ARTICLE_STATUS_NORMAL;
 
 @Service
 public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements ArticleService {
@@ -18,11 +24,22 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         //查询结果，封装后返回
         LambdaQueryWrapper<Article> queryWrapper = new LambdaQueryWrapper<>();
         //非草稿，按浏览量降序查出前十条
-        queryWrapper.eq(Article::getStatus,0);
+        queryWrapper.eq(Article::getStatus,ARTICLE_STATUS_NORMAL);
         queryWrapper.orderByDesc(Article::getViewCount);
         Page<Article> page = new Page<>(1,10);
         page(page,queryWrapper);
         List<Article> articleList = page.getRecords();
-        return ResponseResult.okResult(articleList);
+
+        //未写工具类前的bean拷贝代码
+//        //bean拷贝
+//        for (Article article : articleList) {
+//            HotArticleVo vo = new HotArticleVo();
+//            BeanUtils.copyProperties(article,vo);
+//            hotArticleVoList.add(vo);
+//        }
+        //写了工具类的bean拷贝
+        List<HotArticleVo> hotArticleVos = BeanCopyUtils.copyBeanList(articleList, HotArticleVo.class);
+
+        return ResponseResult.okResult(hotArticleVos);
     }
 }
