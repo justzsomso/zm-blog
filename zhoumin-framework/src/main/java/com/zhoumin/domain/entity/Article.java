@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("sg_article")
+@TableName("zm_article")
 public class Article  {
     @TableId
     private Long id;
