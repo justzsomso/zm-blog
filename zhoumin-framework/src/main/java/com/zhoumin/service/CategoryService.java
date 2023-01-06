@@ -1,6 +1,7 @@
 package com.zhoumin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhoumin.domain.ResponseResult;
 import com.zhoumin.domain.entity.Category;
 
 
@@ -12,5 +13,6 @@ import com.zhoumin.domain.entity.Category;
  */
 public interface CategoryService extends IService<Category> {
 
+    ResponseResult getCategoryList();
 }
 
