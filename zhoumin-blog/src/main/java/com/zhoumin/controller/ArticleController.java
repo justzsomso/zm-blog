@@ -27,4 +27,11 @@ public class ArticleController {
         //查询热门文章 封装后返回
         return articleService.hotArticleList();
     }
+
+    //分页查询文章
+    @GetMapping("/articleList")
+    private ResponseResult articleList(Integer pageNum ,Integer pageSize ,Long categoryId){
+        //查询热门文章 封装后返回
+        return articleService.articleList(pageNum,pageSize,categoryId);
+    }
 }

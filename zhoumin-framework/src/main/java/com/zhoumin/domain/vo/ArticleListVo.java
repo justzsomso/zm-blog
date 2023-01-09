@@ -1,5 +1,6 @@
 package com.zhoumin.domain.vo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,6 @@ public class ArticleListVo {
     private String categoryName;
     //缩略图
     private String thumbnail;
-
 
     //访问量
     private Long viewCount;
