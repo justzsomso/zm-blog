@@ -5,6 +5,7 @@ import com.zhoumin.domain.entity.Article;
 import com.zhoumin.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,15 +24,22 @@ public class ArticleController {
 //    }
 
     @GetMapping("/hotArticleList")
-    private ResponseResult hotArticleList(){
+    public ResponseResult hotArticleList(){
         //查询热门文章 封装后返回
         return articleService.hotArticleList();
     }
 
     //分页查询文章
     @GetMapping("/articleList")
-    private ResponseResult articleList(Integer pageNum ,Integer pageSize ,Long categoryId){
+    public ResponseResult articleList(Integer pageNum ,Integer pageSize ,Long categoryId){
         //查询热门文章 封装后返回
         return articleService.articleList(pageNum,pageSize,categoryId);
     }
+
+
+    @GetMapping("/{id}")
+    public ResponseResult getArticleDetail(@PathVariable("id") Long id){
+        return articleService.getArticleDetail(id);
+    }
+
 }
