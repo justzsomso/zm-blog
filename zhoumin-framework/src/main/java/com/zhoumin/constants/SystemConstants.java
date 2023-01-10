@@ -18,4 +18,13 @@ public class SystemConstants
      * 类别禁用
      */
     public static final String CATEGORY_STATUS_DISABLE = "1";
+
+    /**
+     *  友情链接审核通过
+     */
+    public static final String Link_STATUS_NORMAL = "1";
+    /**
+     *  友情链接审核未通过
+     */
+    public static final String Link_STATUS_DRAFT = "0";
 }
