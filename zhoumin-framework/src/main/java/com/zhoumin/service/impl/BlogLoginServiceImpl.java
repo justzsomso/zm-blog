@@ -40,7 +40,7 @@ public class BlogLoginServiceImpl implements BlogLoginService {
         Long loginUserId = loginUser.getUser().getId();
         String jwt = JwtUtil.createJWT(String.valueOf(loginUserId));
         //将用户信息存入到redis
-        redisCache.setCacheObject("bloglogin" + loginUserId, loginUser);
+        redisCache.setCacheObject("bloglogin:" + loginUserId, loginUser);
 
         //将token和userinfo封装 返回
         UserInfoVo userInfoVo = BeanCopyUtils.copyBean(loginUser.getUser(), UserInfoVo.class);
@@ -58,7 +58,7 @@ public class BlogLoginServiceImpl implements BlogLoginService {
         Long userId = loginUser.getUser().getId();
 
         //删除redis中的信息
-        redisCache.deleteObject("bloglogin"+userId);
+        redisCache.deleteObject("bloglogin:"+userId);
 
         return ResponseResult.okResult();
     }
