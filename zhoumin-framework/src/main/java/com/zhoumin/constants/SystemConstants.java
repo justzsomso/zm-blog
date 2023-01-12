@@ -27,4 +27,9 @@ public class SystemConstants
      *  友情链接审核未通过
      */
     public static final String Link_STATUS_DRAFT = "0";
+
+    /**
+     *  评论的rootId是否是-1，判断是否是根评论
+     */
+    public static final int COMMENT_ROOTID_DRAFT = -1;
 }
