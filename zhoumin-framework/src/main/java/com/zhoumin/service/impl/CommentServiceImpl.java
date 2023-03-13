@@ -8,12 +8,15 @@ import com.zhoumin.domain.ResponseResult;
 import com.zhoumin.domain.entity.Comment;
 import com.zhoumin.domain.vo.CommentVo;
 import com.zhoumin.domain.vo.PageVo;
+import com.zhoumin.enums.AppHttpCodeEnum;
+import com.zhoumin.exception.SystemException;
 import com.zhoumin.mapper.CommentMapper;
 import com.zhoumin.service.CommentService;
 import com.zhoumin.service.UserService;
 import com.zhoumin.utils.BeanCopyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -56,6 +59,21 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
             commentVo.setChildren(children);
         }
         return ResponseResult.okResult(new PageVo(commentVoList, page.getTotal()));
+    }
+
+    @Override
+    public ResponseResult addComment(Comment comment, String token) {
+
+        //校验是否有内容
+        if (StringUtils.hasText(comment.getContent())){
+            throw  new SystemException(AppHttpCodeEnum.REQUIRE_comment);
+        }
+        //校验是否已经登录
+        if (StringUtils.hasText(token)){
+            throw  new SystemException(AppHttpCodeEnum.NO_OPERATOR_AUTH);
+        }
+        save(comment);
+        return ResponseResult.okResult();
     }
 
     /**
