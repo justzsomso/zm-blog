@@ -34,14 +34,16 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
 
 
     @Override
-    public ResponseResult commentList(Long articleId, Integer pageNum, Integer pageSize) {
+    public ResponseResult commentList(String commentType, Long articleId, Integer pageNum, Integer pageSize) {
 
         //查询对应文章的根评论
         LambdaQueryWrapper<Comment> queryWrapper = new LambdaQueryWrapper();
         //通过articleId来进行查询
-        queryWrapper.eq(Comment::getId, articleId);
+        queryWrapper.eq(SystemConstants.ARTICLE_TYPE_NORMAL.equals(commentType),Comment::getId, articleId);
         //根评论的rootId是-1
         queryWrapper.eq(Comment::getRootId, SystemConstants.COMMENT_ROOTID_DRAFT);
+
+        queryWrapper.eq(Comment::getType,commentType);
 
         //分页查询
         Page<Comment> page = new Page(pageNum, pageSize);

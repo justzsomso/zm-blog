@@ -1,5 +1,6 @@
 package com.zhoumin.controller;
 
+import com.zhoumin.constants.SystemConstants;
 import com.zhoumin.domain.ResponseResult;
 import com.zhoumin.domain.entity.Comment;
 import com.zhoumin.service.CommentService;
@@ -15,7 +16,7 @@ public class CommentController {
 
     @GetMapping("/commentList")
     public ResponseResult commentList(Long articleId, Integer pageNum, Integer pageSize){
-        return commentService.commentList(articleId,pageNum,pageSize);
+        return commentService.commentList(SystemConstants.ARTICLE_TYPE_NORMAL,articleId,pageNum,pageSize);
     }
 
     @PostMapping
@@ -23,5 +24,8 @@ public class CommentController {
         return commentService.addComment(comment,token);
     }
 
-
+    @GetMapping("/linkCommentList")
+    public ResponseResult linkcommentList(Long articleId, Integer pageNum, Integer pageSize){
+        return commentService.commentList(SystemConstants.ARTICLE_TYPE_DRAFT,null,pageNum,pageSize);
+    }
 }

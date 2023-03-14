@@ -32,4 +32,13 @@ public class SystemConstants
      *  评论的rootId是否是-1，判断是否是根评论
      */
     public static final int COMMENT_ROOTID_DRAFT = -1;
+
+    /**
+     *  评论类型：友链评论
+     */
+    public static final String ARTICLE_TYPE_DRAFT = "1";
+    /**
+     *  评论类型：文章评论
+     */
+    public static final String ARTICLE_TYPE_NORMAL = "0";
 }
