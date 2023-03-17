@@ -32,5 +32,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         return ResponseResult.okResult(userInfoVo);
     }
+
+    @Override
+    public ResponseResult updateUserInfo(User user) {
+        //todo 这里更新接口严谨一点需要先查看是否存在该用户，另外更新操作后需要删除redis缓存，最后更新完成后将信息更新到redis
+
+
+        //todo 优化 这里会有一些问题：导致user的其他信息被修改
+        //建议过滤一下信息之后进行update操作
+        updateById(user);
+        return ResponseResult.okResult();
+    }
 }
 
