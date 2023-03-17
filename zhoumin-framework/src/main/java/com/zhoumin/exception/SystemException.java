@@ -2,13 +2,8 @@ package com.zhoumin.exception;
 
 import com.zhoumin.enums.AppHttpCodeEnum;
 
-/**
- * @program: zhouminBlog
- * @description: 统一异常处理
- * @author: zhoumin
- * @create: 2023-03-11 10:54
- **/
 public class SystemException extends RuntimeException{
+
     private int code;
 
     private String msg;
@@ -26,4 +21,5 @@ public class SystemException extends RuntimeException{
         this.code = httpCodeEnum.getCode();
         this.msg = httpCodeEnum.getMsg();
     }
+    
 }

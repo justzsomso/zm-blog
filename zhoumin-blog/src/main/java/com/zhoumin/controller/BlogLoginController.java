@@ -19,16 +19,17 @@ public class BlogLoginController {
 
     @PostMapping("/login")
     public ResponseResult login(@RequestBody User user){
-        if (StringUtils.hasText(user.getUserName())){
-            //提示前端需要输入用户名
+        if (!StringUtils.hasText(user.getUserName())){
+            //提示 必须要传用户名
+//            throw new RuntimeException();
             throw new SystemException(AppHttpCodeEnum.REQUIRE_USERNAME);
         }
         return blogLoginService.login(user);
     }
 
+
     @PostMapping("/logout")
     public ResponseResult logout(){
-
         return blogLoginService.logout();
     }
 }

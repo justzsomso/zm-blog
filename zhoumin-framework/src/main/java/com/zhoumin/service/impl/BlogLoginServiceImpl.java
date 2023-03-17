@@ -50,15 +50,16 @@ public class BlogLoginServiceImpl implements BlogLoginService {
 
     @Override
     public ResponseResult logout() {
-        //获取token
+        //解析token
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         LoginUser loginUser = (LoginUser) authentication.getPrincipal();
 
-        //获取id
+        //获取userId
         Long userId = loginUser.getUser().getId();
 
         //删除redis中的信息
-        redisCache.deleteObject("bloglogin:" + userId);
+        redisCache.deleteObject("bloglogin:"+userId);
+
         return ResponseResult.okResult();
     }
 }
