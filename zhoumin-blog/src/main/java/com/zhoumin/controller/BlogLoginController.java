@@ -1,5 +1,6 @@
 package com.zhoumin.controller;
 
+import com.zhoumin.annotation.SystemLog;
 import com.zhoumin.domain.ResponseResult;
 import com.zhoumin.domain.entity.User;
 import com.zhoumin.enums.AppHttpCodeEnum;
@@ -18,6 +19,7 @@ public class BlogLoginController {
     private BlogLoginService blogLoginService;
 
     @PostMapping("/login")
+    @SystemLog(businessName = "登录接口")
     public ResponseResult login(@RequestBody User user){
         if (!StringUtils.hasText(user.getUserName())){
             //提示 必须要传用户名
@@ -29,6 +31,7 @@ public class BlogLoginController {
 
 
     @PostMapping("/logout")
+    @SystemLog(businessName = "退出登录接口")
     public ResponseResult logout(){
         return blogLoginService.logout();
     }

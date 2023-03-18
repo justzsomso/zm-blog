@@ -1,5 +1,6 @@
 package com.zhoumin.controller;
 
+import com.zhoumin.annotation.SystemLog;
 import com.zhoumin.domain.ResponseResult;
 import com.zhoumin.domain.entity.Article;
 import com.zhoumin.service.ArticleService;
@@ -24,6 +25,7 @@ public class ArticleController {
 //    }
 
     @GetMapping("/hotArticleList")
+    @SystemLog(businessName = "查询热门文章")
     public ResponseResult hotArticleList(){
         //查询热门文章 封装后返回
         return articleService.hotArticleList();
@@ -31,6 +33,7 @@ public class ArticleController {
 
     //分页查询文章
     @GetMapping("/articleList")
+    @SystemLog(businessName = "分页查询文章列表")
     public ResponseResult articleList(Integer pageNum ,Integer pageSize ,Long categoryId){
         //查询热门文章 封装后返回
         return articleService.articleList(pageNum,pageSize,categoryId);
@@ -38,6 +41,7 @@ public class ArticleController {
 
 
     @GetMapping("/{id}")
+    @SystemLog(businessName = "文章详情")
     public ResponseResult getArticleDetail(@PathVariable("id") Long id){
         return articleService.getArticleDetail(id);
     }

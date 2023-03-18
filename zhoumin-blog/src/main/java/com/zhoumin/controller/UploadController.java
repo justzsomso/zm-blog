@@ -1,5 +1,6 @@
 package com.zhoumin.controller;
 
+import com.zhoumin.annotation.SystemLog;
 import com.zhoumin.domain.ResponseResult;
 import com.zhoumin.service.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ public class UploadController {
     private UploadService uploadService;
 
     @PostMapping("/upload")
+    @SystemLog(businessName = "上传用户信息")
     public ResponseResult uploadImg(MultipartFile img){
         return uploadService.uploadImg(img);
     }

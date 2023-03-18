@@ -1,5 +1,6 @@
 package com.zhoumin.controller;
 
+import com.zhoumin.annotation.SystemLog;
 import com.zhoumin.domain.ResponseResult;
 import com.zhoumin.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("/getCategoryList")
+    @SystemLog(businessName = "查询分类列表")
     public ResponseResult getCategoryList(){
         return categoryService.getCategoryList();
     }
