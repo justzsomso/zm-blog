@@ -24,6 +24,10 @@
     username：sg
     password:1234
 
+3.Swagger网址
+http//localhost:7777/swagger-ui.html
+
+
 问题，反思
 1. 使用mybaitsPlus进行数据库查询时，能否直接查出需要的属性进行封装，不再进行vo的转换
 2. bean拷贝的效率是否可以提高
