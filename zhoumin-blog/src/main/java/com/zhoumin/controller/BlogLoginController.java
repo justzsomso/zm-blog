@@ -2,10 +2,14 @@ package com.zhoumin.controller;
 
 import com.zhoumin.annotation.SystemLog;
 import com.zhoumin.domain.ResponseResult;
+import com.zhoumin.domain.dao.LoginUserDto;
+import com.zhoumin.domain.entity.Comment;
+import com.zhoumin.domain.entity.LoginUser;
 import com.zhoumin.domain.entity.User;
 import com.zhoumin.enums.AppHttpCodeEnum;
 import com.zhoumin.exception.SystemException;
 import com.zhoumin.service.BlogLoginService;
+import com.zhoumin.utils.BeanCopyUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -26,12 +30,13 @@ public class BlogLoginController {
     @PostMapping("/login")
     @SystemLog(businessName = "登录接口")
     @ApiOperation(value = "登录接口")
-    public ResponseResult login(@RequestBody User user){
-        if (!StringUtils.hasText(user.getUserName())){
+    public ResponseResult login(@RequestBody LoginUserDto loginUserDto){
+        if (!StringUtils.hasText(loginUserDto.getUserName())){
             //提示 必须要传用户名
 //            throw new RuntimeException();
             throw new SystemException(AppHttpCodeEnum.REQUIRE_USERNAME);
         }
+        User user = BeanCopyUtils.copyBean(loginUserDto, User.class);
         return blogLoginService.login(user);
     }
 

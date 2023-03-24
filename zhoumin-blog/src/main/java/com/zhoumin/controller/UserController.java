@@ -25,6 +25,7 @@ public class UserController {
         return userService.userInfo();
     }
 
+    //todo 更新个人信息接口更新的内容有什么在创建一个dto
     @PostMapping("/userInfo")
     @SystemLog(businessName = "更新个人信息")
     @ApiOperation(value = "更新个人信息")
@@ -33,6 +34,7 @@ public class UserController {
         return userService.updateUserInfo(user);
     }
 
+    //todo 用户注册接口更新的内容有什么在创建一个dto
     @PostMapping("/register")
     @SystemLog(businessName = "用户注册")
     @ApiOperation(value = "用户注册")
