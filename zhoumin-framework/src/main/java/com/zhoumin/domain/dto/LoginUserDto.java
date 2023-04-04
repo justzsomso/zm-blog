@@ -1,4 +1,4 @@
-package com.zhoumin.domain.dao;
+package com.zhoumin.domain.dto;
 
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;

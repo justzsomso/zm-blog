@@ -2,17 +2,13 @@ package com.zhoumin.controller;
 
 import com.zhoumin.annotation.SystemLog;
 import com.zhoumin.domain.ResponseResult;
-import com.zhoumin.domain.dao.LoginUserDto;
-import com.zhoumin.domain.entity.Comment;
-import com.zhoumin.domain.entity.LoginUser;
+import com.zhoumin.domain.dto.LoginUserDto;
 import com.zhoumin.domain.entity.User;
 import com.zhoumin.enums.AppHttpCodeEnum;
 import com.zhoumin.exception.SystemException;
 import com.zhoumin.service.BlogLoginService;
 import com.zhoumin.utils.BeanCopyUtils;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;

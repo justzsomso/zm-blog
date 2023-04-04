@@ -3,7 +3,7 @@ package com.zhoumin.controller;
 import com.zhoumin.annotation.SystemLog;
 import com.zhoumin.constants.SystemConstants;
 import com.zhoumin.domain.ResponseResult;
-import com.zhoumin.domain.dao.AddCommentDto;
+import com.zhoumin.domain.dto.AddCommentDto;
 import com.zhoumin.domain.entity.Comment;
 import com.zhoumin.service.CommentService;
 import com.zhoumin.utils.BeanCopyUtils;
